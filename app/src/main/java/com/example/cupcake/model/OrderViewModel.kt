@@ -1,27 +1,30 @@
 package com.example.cupcake.model
 
-import java.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import java.util.Locale
+import java.text.SimpleDateFormat
 import java.util.*
 
 class OrderViewModel : ViewModel() {
 
-    private val _quantity = MutableLiveData<Int>(0)
-    val dateOptions = getPickupOptions()
-
+    private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    private val _flavor = MutableLiveData<String>("")
+    private val _flavor = MutableLiveData<String>()
     val flavor: LiveData<String> = _flavor
 
-    private val _date = MutableLiveData<String>("")
+    private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
 
-    private val _price = MutableLiveData<Double>(0.0)
+    private val _price = MutableLiveData<Double>()
     val price: LiveData<Double> = _price
+
+    val dateOptions = getPickupOptions()
+
+    init {
+        resetOrder()
+    }
 
     fun setQuantity(numberCupcakes: Int) {
         _quantity.value = numberCupcakes
@@ -51,6 +54,10 @@ class OrderViewModel : ViewModel() {
         return options
     }
 
-
-
+    fun resetOrder() {
+        _quantity.value = 0
+        _flavor.value = ""
+        _date.value = dateOptions[0]
+        _price.value = 0.0
+    }
 }
