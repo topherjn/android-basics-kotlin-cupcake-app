@@ -112,6 +112,7 @@
                 android:id="@+id/cancel_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> flavorFragment.cancelOrder()}"
                 android:text="@string/cancel"
                 app:layout_constraintEnd_toStartOf="@id/next_button"
                 app:layout_constraintStart_toStartOf="parent"
